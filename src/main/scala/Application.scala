@@ -3,6 +3,8 @@ package io.luckynumbers
 import cats.effect.{ExitCode, IO, IOApp}
 import services.GameSimulator
 
+import util.JSONFormatter
+
 import scala.concurrent.ExecutionContext
 import scala.util.Random
 
@@ -14,7 +16,7 @@ object Application extends IOApp {
 
         for {
           result <- GameSimulator.simulateGame(n)
-          _      <- IO(println(s"Results for $n: $result"))
+          _      <- IO(println(s"Results for $n: ${JSONFormatter.resultsToJson(result)}"))
         } yield ExitCode.Success
 
   }
