@@ -2,13 +2,12 @@ package io.luckynumbers
 package services
 
 import cats.effect.IO
-import util.Result
+import messages.Result
 
 object GameSimulator {
-  def simulateGame(n: Int) : IO[List[Result]] = IO {
+  def simulateGame(n: Int) : List[Result] = {
     val results = (0 to n).toList.map ( player => NumberGenerator.generateNumber(player))
       .map(ResultsCalculator.calculateResults)
-    println(results)
     results.tail
       .filter(result => result._3 >= results.head._3)
       .sortBy(-_._3)
