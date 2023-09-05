@@ -1,4 +1,4 @@
 package io.luckynumbers
-package util
+package messages
 
 case class Result(position: Int, player: Int, number: Int, result: Int)
