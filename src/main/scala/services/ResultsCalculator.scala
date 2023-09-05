@@ -4,16 +4,8 @@ package services
 import cats.effect.IO
 
 object ResultsCalculator {
-  def calculateResults(n: Int): IO[List[(Int, Int, Int)]] = {
-    val numberListIO: IO[List[(Int, Int)]] = NumberListGenerator.generateNumberList(n)
-
-    numberListIO.flatMap { numberList =>
-      IO {
-        numberList.map { case (index, number) =>
-          (index, number, processNumber(number))
-        }
-      }
-    }
+  def calculateResults(tuple: (Int,Int)): (Int, Int, Int) = {
+    (tuple._1, tuple._2, processNumber(tuple._2))
   }
 
   private def processNumber(n: Int): Int = {

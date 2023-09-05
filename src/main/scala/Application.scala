@@ -1,8 +1,7 @@
 package io.luckynumbers
 
-import services.FinalResultCalculator
-
 import cats.effect.{ExitCode, IO, IOApp}
+import services.GameSimulator
 
 import scala.concurrent.ExecutionContext
 import scala.util.Random
@@ -14,7 +13,7 @@ object Application extends IOApp {
     val n = 5
 
         for {
-          result <- FinalResultCalculator.calculateFinalResults(n)
+          result <- GameSimulator.simulateGame(n)
           _      <- IO(println(s"Results for $n: $result"))
         } yield ExitCode.Success
 
