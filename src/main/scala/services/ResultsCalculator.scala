@@ -3,11 +3,27 @@ package services
 
 import cats.effect.IO
 
+/**
+ * ResultsCalculator calculates results based on a tuple of player and number.
+ */
 object ResultsCalculator {
-  def calculateResults(tuple: (Int,Int)): (Int, Int, Int) = {
+
+  /**
+   * Calculates results based on a tuple containing player and number.
+   *
+   * @param tuple A tuple containing the player identifier and the generated number.
+   * @return A tuple containing the player identifier, the generated number, and the calculated result.
+   */
+  def calculateResults(tuple: (Int, Int)): (Int, Int, Int) = {
     (tuple._1, tuple._2, processNumber(tuple._2))
   }
 
+  /**
+   * Processes a number to calculate the result.
+   *
+   * @param n The number to be processed.
+   * @return The calculated result based on the number.
+   */
   private def processNumber(n: Int): Int = {
     n.toString
       .groupBy(_.asDigit)
@@ -17,3 +33,4 @@ object ResultsCalculator {
       .sum
   }
 }
+
